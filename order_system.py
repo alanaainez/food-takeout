@@ -28,16 +28,9 @@ def place_order(menu):
     print("Welcome to the Generic Take Out Restaurant.")
 
     # TODO: Create a continuous while loop so customers can order multiple items
-    while True:
-        print_menu_heading()
+
         # TODO: Ask the customer what they want to order
-        i =1
-        for food_category, options in menu.items():
-            for meal, price in options.items():
-                print_menu_line(i, food_category, meal, price)
-                i += 1
-        
-        
+
 
         # Create a variable for the menu item number
         i = 1
@@ -60,42 +53,37 @@ def place_order(menu):
                 i += 1
 
         # TODO: Ask customer to input menu item number
-        menu_selection = input("Please select a menu item by number: ")
-        if menu_selection.lower() == 'n':
-            break
+
 
         # TODO: Update the order list using the update_order function
         # TODO: Send the order list, menu selection, and menu items as arguments
-        order = update_order(order, menu_selection, menu_items)
+
 
         # TODO: Ask the customer if they would like to order anything else
         # TODO: Let the customer know if they should type 'n' or 'N' to quit
-        more = input("Would you like to order anything else? (y/n): ")
-        
+
 
         # TODO: Write a conditional statement that checks the user's input
         # TODO: The conditional statement should check for 'n' or 'N'
-        if more.lower() == 'n':
-            break
 
             # TODO: Write a print statement that thanks the customer for their order
-            print("Thank you for your order!")
-            
+
+
             # TODO: Use list comprehension to create a list called prices_list,
             # TODO: which contains the total prices for each item in the order list:
             # TODO: The total price for each item should multiply the price by quantity
-    prices_list = [item['Price'] * item['Quantity'] for item in order]
+
 
             # TODO: Create an order_total from the prices list using sum()
             # TODO: Round the prices to 2 decimal places.
-    order_total = round(sum(prices_list), 2)
+
 
             # TODO: Exit the ordering loop
             # TODO: Either use a break statement or set the condition to False
 
 
     # TODO: Return the order list and the order total
-    return order, order_total
+
 
 def update_order(order, menu_selection, menu_items):
     """
@@ -170,12 +158,14 @@ def print_itemized_receipt(receipt):
     #print(receipt)
 
     # TODO: Loop through the items in the customer's receipt
-
+    print_receipt_heading()
         # TODO Store the dictionary items as variables
-
+    for item in receipt:
 
         # TODO: Print the receipt line using the print_receipt_line function
+        print_receipt_line(item['Item name'], item['Price'], item['Quantity'])
         # TODO: Send the item name, price, and quantity as separate arguments
+    print_receipt_footer(sum([item['Price'] * item['Quantity'] for item in receipt]))
 
 
 ##################################################
