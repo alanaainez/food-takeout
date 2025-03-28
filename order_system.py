@@ -2,7 +2,6 @@ def place_order(menu):
     """
     Displays a restaurant menu, asks customers for their order, then returns
     their receipt and total price.
-
     Parameters:
     menu (dictionary): A nested dictionary containing the menu items and their 
                        prices, using the following format:
@@ -11,7 +10,6 @@ def place_order(menu):
                                 "Meal": price
                             }
                         }
-
     Returns:
     order (list): A list of dictionaries containing the menu item name, price,
                   and quantity ordered.
@@ -20,13 +18,10 @@ def place_order(menu):
     # Set up order list. Order list will store a list of dictionaries for
     # menu item name, item price, and quantity ordered
     order = []
-
     # Get the menu items mapped to the menu numbers
     menu_items = get_menu_items_dict(menu)
-
     # Launch the store and present a greeting to the customer
     print("Welcome to the Generic Take Out Restaurant.")
-
     # TODO: Create a continuous while loop so customers can order multiple items
     while True:
         print_menu_heading()
@@ -35,7 +30,6 @@ def place_order(menu):
             for meal, price in options.items():
                 print_menu_line(i, food_category, meal, price)
                 i += 1
-
         menu_selection = input("Please select an item by number (or 'n' to finish): ").strip()
         if menu_selection.lower() == 'n':  # Exit if they input 'n' or 'N'
             return order, round(sum(item['Price'] * item['Quantity'] for item in order), 2)
@@ -46,34 +40,27 @@ def place_order(menu):
                 order = updated_order
         else:
             print(f"Invalid selection {menu_selection}. Please choose a valid item number.")
-
     # Process the selection
         # order = update_order(order, menu_selection, menu_items)
-
     # Ask if they want to order more
         if input("Would you like to order anything else? (y/n): ").strip().lower() == 'n':
             break
-
     return order, round(sum(item['Price'] * item['Quantity'] for item in order), 2)
-
 def update_order(order, menu_selection, menu_items):
     """
     Checks if the customer menu selection is valid, then updates the order.
-
     Parameters:
     order (list): A list of dictionaries containing the menu item name, price,
                     and quantity ordered.
     menu_selection (str): The customer's menu selection.
     menu_items (dictionary): A dictionary containing the menu items and their
                             prices.
-
     Returns:
     order (list): A list of dictionaries containing the menu item name, price,
                     and quantity ordered (updated as needed).
     """
     # TODO: Check if the customer typed a number
     try:
-
         # TODO: Check if the menu selection is in the menu items keys
         # TODO: Convert the menu selection to an integer
         menu_selection = int(menu_selection)
@@ -91,7 +78,6 @@ def update_order(order, menu_selection, menu_items):
     # TODO: Store the item name as a variable
     item_name = menu_items[menu_selection]['Item name']
     price = menu_items[menu_selection]['Price']
-
             # TODO: Ask the customer for the quantity of the menu item
             # TODO: Use the item name variable in the question
             # TODO: When the user's input isn't valid, 
@@ -102,7 +88,6 @@ def update_order(order, menu_selection, menu_items):
     except ValueError:
             print("Invalid quantity. Defaulting to 1.")
             quantity = 1      
-
     # TODO: Add a dictionary to the order list 
     # TODO: The dictionary should include the item name, price, and quantity
     # TODO: Use the following names for the dictionary keys:
@@ -111,28 +96,23 @@ def update_order(order, menu_selection, menu_items):
     
     # TODO: Return the updated order
     return order
-
 def print_itemized_receipt(receipt):
     """
     Prints an itemized receipt for the customer.
-
     Parameters:
     receipt (list): A list of dictionaries containing the menu item name, price,
                     and quantity ordered.
     """
     # Uncomment the following line if you need to check the structure of the receipt
     #print(receipt)
-
     # TODO: Loop through the items in the customer's receipt
     print_receipt_heading()
         # TODO Store the dictionary items as variables
     for item in receipt:
-
         # TODO: Print the receipt line using the print_receipt_line function
         print_receipt_line(item['Item name'], item['Price'], item['Quantity'])
         # TODO: Send the item name, price, and quantity as separate arguments
     print_receipt_footer(sum([item['Price'] * item['Quantity'] for item in receipt]))
-
 
 ##################################################
 #  STARTER CODE
